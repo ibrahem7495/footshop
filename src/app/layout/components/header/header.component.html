@@ -1,0 +1,112 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0"> error when use navbar -->
+<nav class="navbar-expand-lg navbar-dark bg-dark p-0">
+  <div class="container-fluid ">
+    <!-- Section 1: Top Navbar -->
+    <div class="row w-100 align-items-center d-lg-flex">
+      <div class="col-12">
+        <div class="collapse navbar-collapse" id="navbarTop">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link p-1 px-3 active fs-7" routerLink="/CreateAccount" routerLinkActive="active"
+                >Create an Account</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-1 px-3 fs-7" routerLink="/login" routerLinkActive="active">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-1 px-3 fs-7" href="#">العربية</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Horizontal Divider -->
+    <div class="row w-100 d-none d-lg-block">
+      <div class="col-12">
+        <div style="background-color: #343e4b; height: 1px"></div>
+      </div>
+    </div>
+
+    <!-- Section 2: mid Navbar -->
+    <div
+      class="row w-100 align-items-center d-lg-flex mt-2"
+      style="height: 80px"
+    >
+      <!-- toggler button  -->
+      <div class="col-2 text-lg-start text-start">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarTop"
+          aria-controls="navbarTop"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <!-- Brand Logo -->
+      <div class="col-lg-3 col-8 text-lg-start text-center">
+        <a class="navbar-brand" routerLink="/home" routerLinkActive="active">
+          <img
+            src="../../../../assets/imgs/prand Image.png"
+            alt="Brand Logo"
+            style="height: 40px"
+          />
+        </a>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="col-lg-5 mt-lg-0 mt-2 d-none d-lg-block">
+        <form class="d-flex">
+          <input
+            class="form-control"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-danger text-white ms-2" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
+
+      <!-- Icons -->
+      <div class="col-lg-2 col-2 text-lg-end text-end mt-lg-0 mt-2">
+        <a class="nav-link d-inline" href="#" title="Favorites">
+          <i class="fa fa-heart text-white"></i>
+        </a>
+        <a class="nav-link d-inline ms-3" href="#" title="Cart">
+          <i class="fa fa-shopping-cart text-white"></i>
+        </a>
+      </div>
+    </div>
+    <!-- Section 3 : bottom Navbar -->
+    <div class="row w-100 align-items-center d-lg-flex bg-gray">
+      <div class="col-12">
+        <div class="collapse navbar-collapse" id="navbarTop">
+          <ul class="navbar-nav mx-auto text-center">
+            <li class="nav-item">
+              <a class="nav-link p-1 px-3 active fs-7" href="#">Men's</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-1 px-3 fs-7" href="#">Women's</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-1 px-3 fs-7" href="#">Kids'</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-1 px-3 fs-7" href="#">Brands</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-1 px-3 fs-7" href="#">SALE</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+     </div>
+</nav>

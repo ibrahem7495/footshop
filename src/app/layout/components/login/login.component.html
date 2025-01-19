@@ -1,0 +1,74 @@
+
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+
+
+
+    <div class="row w-100">
+      <div class="row ">
+        <div class="col-12">
+
+      <h3 class="text-center mb-4">Sign In</h3>
+    </div>
+  </div>
+      <div class="col-12 mx-auto">
+        <!-- Main Row for Both Cards -->
+        <div class="row g-4">
+
+          <!-- Sign In with Email Card -->
+          <div class="col-12 col-lg-6">
+            <div class="card shadow-sm">
+              <div class="card-body">
+
+                <!-- Sign In with Email Section -->
+                <div class="badge bg-primary text-white w-100 mb-4">
+                  <h5 class="mb-0 text-center">SIGN IN WITH EMAIL ADDRESS</h5>
+                </div>
+                <form>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-group">
+                      <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                      <button type="button" class="btn btn-outline-secondary" id="showPassword" onclick="togglePassword()">
+                        <i class="fa fa-eye" id="eyeIcon"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <a href="#" class="text-decoration-none">Forgot password?</a>
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sign In with Social Media Card -->
+          <div class="col-12 col-lg-6">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div class="badge bg-info text-white w-100 mb-4">
+                  <h5 class="mb-0 text-center">SIGN IN WITH SOCIAL MEDIA</h5>
+                </div>
+                <button class="btn btn-outline-primary w-100 mb-3">
+                  <i class="fab fa-facebook-f"></i> Sign Up With Facebook
+                </button>
+                <button class="btn btn-outline-danger w-100">
+                  <i class="fab fa-google"></i> Sign Up With Google
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sign Up Section -->
+        <div class="mt-3 text-center">
+          <p>DON'T HAVE AN ACCOUNT YET? <a href="#" class="text-decoration-none">Sign Up Here</a></p>
+        </div>
+      </div>
+    </div>
+  </div>

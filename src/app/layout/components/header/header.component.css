@@ -1,0 +1,22 @@
+/* app.component.css or navbar.component.css */
+.navbar {
+  background-color: #000; /* Black background */
+}
+
+.nav-link {
+  color: white !important; /* White text */
+}
+
+.nav-link:hover {
+  color: #ddd !important; /* Light gray on hover */
+}
+.fs-7{
+  font-size: 12px !important;/*adjust asmall font size*/
+}
+.text-white{
+  color: white;
+}
+.bg-gray{
+  background-color: #504a4a;
+}
+
