@@ -1,0 +1,30 @@
+.image-1 {
+  background-image: url('../../../assets/imgs/1313d30491096__banner_copy_2.png');
+}
+.responsive-img {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  width: 100%;
+  height: 400px; /*image height */
+}
+
+
+
+.color-white {
+  color: white;
+}
+
+.font-xxl {
+  font-size: 300%;
+}
+.btn-white{
+  background-color: white;
+
+}
+.btn-white:hover {
+  background-color: gray; /* Change background to gray on hover */
+  color: white; /* Change text color to white on hover */
+  border-bottom-color:white ;
+  border-bottom-width: 2px;
+}

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/components/layout/layout.component';
 import { LoginComponent } from './layout/components/login/login.component';
 import { CreateAccountComponent } from './layout/components/create-account/create-account.component';
-import { HomeComponent } from './layout/components/home/home.component';
+import { HomeComponent } from './component/home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route
