@@ -4,19 +4,21 @@ import { LayoutComponent } from './layout/components/layout/layout.component';
 import { LoginComponent } from './layout/components/login/login.component';
 import { CreateAccountComponent } from './layout/components/create-account/create-account.component';
 import { HomeComponent } from './component/home/home.component';
+import { IncorectPathComponent } from './layout/components/incorect-path/incorect-path.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route
 //lay aout route
   { path: '', component : LayoutComponent, children :[
-    {path: 'login',component: LoginComponent },
-    {path: 'CreateAccount',component: CreateAccountComponent },
+
     {path: 'home',component: HomeComponent }
 
   ]
 
-    }
-    // {path: '**',component:IncorectPathComponent }
+    },
+    {path: 'login',component: LoginComponent },
+    {path: 'CreateAccount',component: CreateAccountComponent },
+    {path: '**',component:IncorectPathComponent }
 
 ];
 
