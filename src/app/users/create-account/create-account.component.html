@@ -20,6 +20,9 @@
                 <div *ngIf= "fullName?.errors?.['minlength'] " >
                   Name must be at least 5 characters long.
                 </div>
+                <div *ngIf= "!fullName?.errors?.['validateFullName'] " >
+                  Name cant incloude a number.
+                </div>
 
               </div>
             </div>
@@ -73,7 +76,7 @@
 
             <!-- Sign Up Button -->
             <div class="d-flex justify-content-center mt-4">
-              <button  type="submit" class="btn btn-primary w-100">Create an Account</button>
+              <button  type="submit" [disabled]="createAccount.invalid" class="btn btn-primary w-100">Create an Account</button>
               <!-- [disabled]="createAccount.invalid" -->
             </div>
           </form>
@@ -82,4 +85,9 @@
     </div>
   </div>
 </div>
+<div>
+  <h1>REMVED</h1>
+  {{createAccount.value | json}}
+  {{fullName?.errors| json}}
 
+</div>

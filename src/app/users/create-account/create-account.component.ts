@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { validateFullName } from './validators';
 
 @Component({
   selector: 'app-create-account',
@@ -8,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class CreateAccountComponent implements OnInit {
   createAccount = new FormGroup({
-    fullName : new FormControl('',[Validators.required,Validators.minLength(5)]),
+    fullName : new FormControl('',[Validators.required,Validators.minLength(5),validateFullName]),
     email : new FormControl('',[Validators.required,Validators.email]),
     password : new FormControl('',[Validators.required,Validators.minLength(7)]),
     exclusiveDeals : new FormControl('',[Validators.required]),
