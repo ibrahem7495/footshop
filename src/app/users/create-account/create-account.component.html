@@ -8,12 +8,12 @@
 
           <!-- Sign Up with Email -->
           <h5 class="mb-3">SIGN UP WITH EMAIL ADDRESS</h5>
-          <form [formGroup]="createAccount">
+          <form [formGroup]= "createAccount">
             <!-- Full Name -->
             <div class="mb-3">
               <label for="fullName" class="form-label">Full Name</label>
               <input formControlName="fullName" type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
-              <div *ngIf= "fullName?.invalid && ( fullName?.touched || fullName?.dirty)" class="alert alert-danger p-1">
+              <div *ngIf= "fullName?.invalid && ( fullName?.touched)" class="alert alert-danger p-1">
                 <div *ngIf= "fullName?.errors?.['required']" >
                   name is required
                 </div>
@@ -28,7 +28,7 @@
             <div class="mb-3">
               <label for="email" class="form-label">Email Address</label>
               <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter your email" required>
-              <div *ngIf= "email?.invalid && ( email?.touched || email?.dirty)" class="alert alert-danger p-1">
+              <div *ngIf= "email?.invalid && ( email?.touched )" class="alert alert-danger p-1">
                 <div *ngIf= "email?.errors?.['required']" >
                   email is required
                 </div>
@@ -44,7 +44,7 @@
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
                 <input formControlName="password" type="password" class="form-control" id="password" placeholder="Enter your password" required>
-                <div *ngIf= "password?.invalid && ( password?.touched || password?.dirty)" class="alert alert-danger p-1">
+                <div *ngIf= "password?.invalid && password?.touched" class="alert alert-danger p-1">
                   <div *ngIf= "password?.errors?.['required']" >
                     password is required
                   </div>
@@ -73,7 +73,8 @@
 
             <!-- Sign Up Button -->
             <div class="d-flex justify-content-center mt-4">
-              <button [disabled]="createAccount.invalid" type="submit" class="btn btn-primary w-100">Create an Account</button>
+              <button  type="submit" class="btn btn-primary w-100">Create an Account</button>
+              <!-- [disabled]="createAccount.invalid" -->
             </div>
           </form>
         </div>
