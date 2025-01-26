@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { validateFullName } from './validators';
+import { validateFullName } from '../validators/fullNameValidator';
+import { confirmPassword } from '../validators/confirmPasswordValidator';
 
 @Component({
   selector: 'app-create-account',
@@ -12,10 +13,16 @@ export class CreateAccountComponent implements OnInit {
     fullName : new FormControl('',[Validators.required,Validators.minLength(5),validateFullName]),
     email : new FormControl('',[Validators.required,Validators.email]),
     password : new FormControl('',[Validators.required,Validators.minLength(7)]),
+    confirmPassword : new FormControl('',[Validators.required]),
+
     exclusiveDeals : new FormControl('',[Validators.required]),
     termsAndConditions : new FormControl('',[Validators.required])
 
+  },
+  { Validators:confirmPassword
+
   })
+
   constructor() { }
 
   ngOnInit(): void {
@@ -33,7 +40,7 @@ get password (){
 get exclusiveDeals (){
   return this.createAccount.get('exclusiveDeals');
 }
-get termsAndConditions (){
-  return this.createAccount.get('termsAndConditions');
+get confirmPassword(){
+  return this.createAccount.get('confirmPassword');
 }
 }

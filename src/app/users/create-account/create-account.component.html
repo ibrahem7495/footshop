@@ -37,7 +37,7 @@
                 </div>
                <div *ngIf="email?.errors?.['email']">
                 Invalid email format
-               </div>
+                </div>
               </div>
 
 
@@ -53,6 +53,19 @@
                   </div>
                   <div *ngIf= "password?.errors?.['minlength'] " >
                     passowrd must be at least 5 characters long.
+                  </div>
+
+                </div>
+              </div>
+              <div>
+              <label for="confirmPassword" class="form-label">confirmPassword</label>
+                <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+                <div *ngIf= "confirmPassword?.invalid && confirmPassword?.touched" class="alert alert-danger p-1">
+                  <div *ngIf= "confirmPassword?.errors?.['required']" >
+                    password is required
+                  </div>
+                  <div *ngIf= "confirmPassword?.errors?.['confirmPassword'] " >
+                    password not match
                   </div>
 
                 </div>
