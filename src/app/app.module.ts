@@ -10,6 +10,7 @@ import { LayoutComponent } from './layout/components/layout/layout.component';
 import { LoginComponent } from './layout/components/login/login.component';
 import { CreateAccountComponent } from './layout/components/create-account/create-account.component';
 import { IncorectPathComponent } from './layout/components/incorect-path/incorect-path.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { IncorectPathComponent } from './layout/components/incorect-path/incorec
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
