@@ -11,6 +11,7 @@ import { LoginComponent } from './users/login/login.component';
 import { CreateAccountComponent } from './users/create-account/create-account.component';
 import { IncorectPathComponent } from './component/incorect-path/incorect-path.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,12 +22,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     LayoutComponent,
     LoginComponent,
     CreateAccountComponent,
-    IncorectPathComponent
+    IncorectPathComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

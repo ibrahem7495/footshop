@@ -1,5 +1,18 @@
 
-  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <!-- welcme message and navigation after login  -->
+        <!-- display after login -->
+         <div *ngIf= "loginFlag" class="container d-flex justify-content-center m-5 ">
+<div class="card" style="width: 30rem;">
+  <img src="../..//../assets/imgs/1313d30491096__banner_copy_2.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title ">{{userName}}</h5>
+    <p class="card-text">welcome to our footShop .</p>
+    <a routerLink="/home" routerLinkActive="active" class="btn btn-primary">Go Home </a>
+  </div>
+</div>
+</div>
+<!--*************************************************************************************** -->
+  <div *ngIf="!loginFlag" class="container d-flex justify-content-center align-items-center min-vh-100">
 
 
 
@@ -20,21 +33,18 @@
               <div class="card-body">
 
                 <!-- Sign In with Email Section -->
-                <div class="badge bg-primary text-white w-100 mb-4">
+                <div  class="badge bg-primary text-white w-100 mb-4">
                   <h5 class="mb-0 text-center">SIGN IN WITH EMAIL ADDRESS</h5>
                 </div>
-                <form>
+                <form  [formGroup]="sginIn" (ngSubmit)="getAcoount()">
                   <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    <input formControlName="inputEmail" type="email" #email class="form-control" id="email" placeholder="Enter your email" required>
                   </div>
                   <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <div class="input-group">
-                      <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
-                      <button type="button" class="btn btn-outline-secondary" id="showPassword" onclick="togglePassword()">
-                        <i class="fa fa-eye" id="eyeIcon"></i>
-                      </button>
+                      <input formControlName="inputPassword" type="password" #password class="form-control" id="password" placeholder="Enter your password" required>
                     </div>
                   </div>
                   <div class="d-flex justify-content-between">
@@ -71,4 +81,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div>
+    <h1>REMVE </h1>
+    <P>loginFlag {{loginFlag}}</P>
   </div>

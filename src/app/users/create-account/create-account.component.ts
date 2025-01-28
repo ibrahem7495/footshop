@@ -1,7 +1,9 @@
+import { ApiService } from './../../../server/api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { validateFullName } from '../validators/fullNameValidator';
 import { confirmPassword } from '../validators/confirmPasswordValidator';
+import { UserAccountData } from './user-account-data';
 
 @Component({
   selector: 'app-create-account',
@@ -15,15 +17,16 @@ export class CreateAccountComponent implements OnInit {
     password : new FormControl('',[Validators.required,Validators.minLength(7)]),
     confirmPassword : new FormControl('',[Validators.required]),
 
-    exclusiveDeals : new FormControl('',[Validators.required]),
-    termsAndConditions : new FormControl('',[Validators.required])
+     exclusiveDeals : new FormControl('',[Validators.required]),
+     termsAndConditions : new FormControl('',[Validators.required])
 
   },
-  { Validators:confirmPassword
+  { validators : confirmPassword
 
   })
+  constructor(private apiService: ApiService) {
 
-  constructor() { }
+   }
 
   ngOnInit(): void {
   }
@@ -42,5 +45,8 @@ get exclusiveDeals (){
 }
 get confirmPassword(){
   return this.createAccount.get('confirmPassword');
+}
+addUser(){
+this.apiService.register(this.createAccount.value).subscribe(user=>{alert('added'); })
 }
 }

@@ -8,7 +8,7 @@
 
           <!-- Sign Up with Email -->
           <h5 class="mb-3">SIGN UP WITH EMAIL ADDRESS</h5>
-          <form [formGroup]= "createAccount">
+          <form [formGroup]= "createAccount" (ngSubmit)= "addUser()">
             <!-- Full Name -->
             <div class="mb-3">
               <label for="fullName" class="form-label">Full Name</label>
@@ -58,13 +58,13 @@
                 </div>
               </div>
               <div>
-              <label for="confirmPassword" class="form-label">confirmPassword</label>
+              <label for="confirmPassword" class="form-label">confirm Password</label>
                 <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
                 <div *ngIf= "confirmPassword?.invalid && confirmPassword?.touched" class="alert alert-danger p-1">
                   <div *ngIf= "confirmPassword?.errors?.['required']" >
                     password is required
                   </div>
-                  <div *ngIf= "confirmPassword?.errors?.['confirmPassword'] " >
+                  <div *ngIf= "!confirmPassword?.errors?.['confirmPassword'] " >
                     password not match
                   </div>
 
@@ -101,6 +101,6 @@
 <div>
   <h1>REMVED</h1>
   {{createAccount.value | json}}
-  {{fullName?.errors| json}}
+  {{confirmPassword?.errors| json}}
 
 </div>
