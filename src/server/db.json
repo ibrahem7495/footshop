@@ -44,6 +44,15 @@
       "exclusiveDeals": true,
       "termsAndConditions": true,
       "id": 6
+    },
+    {
+      "fullName": "ibrahem ",
+      "email": "aaa@aaa.com",
+      "password": "aaaaaaaaaaaaa",
+      "confirmPassword": "aaaaaaaaaaaaa",
+      "exclusiveDeals": true,
+      "termsAndConditions": true,
+      "id": 7
     }
   ],
   "products": [

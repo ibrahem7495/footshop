@@ -1,3 +1,8 @@
+<div *ngIf="addedSuccessAlert" class="alert alert-success d-flex align-items-center" role="alert">
+  <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+  <div>
+user added succesesfuly   </div>
+</div>
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
   <div class="row w-100">
     <div class="col-12 col-md-8 col-lg-6">
@@ -12,7 +17,7 @@
             <!-- Full Name -->
             <div class="mb-3">
               <label for="fullName" class="form-label">Full Name</label>
-              <input formControlName="fullName" type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+              <input formControlName="name" type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
               <div *ngIf= "fullName?.invalid && ( fullName?.touched)" class="alert alert-danger p-1">
                 <div *ngIf= "fullName?.errors?.['required']" >
                   name is required
@@ -42,7 +47,9 @@
 
 
             </div>
-
+            <!-- avatar -->
+            <label for="name" class="form-label">Full Name</label>
+            <input formControlName="avatar" type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
             <!-- Password -->
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
@@ -72,20 +79,20 @@
               </div>
 
             <!-- Exclusive Deals Checkbox -->
-            <div class="form-check">
+            <!-- <div class="form-check">
               <input formControlName="exclusiveDeals" class="form-check-input" type="checkbox" id="exclusiveDeals">
               <label class="form-check-label" for="exclusiveDeals" >
                 I would like to receive exclusive deals from Footshop
               </label>
-            </div>
+            </div> -->
 
             <!-- Terms and Conditions -->
-            <div class="form-check">
+            <!-- <div class="form-check">
               <input formControlName="termsAndConditions" class="form-check-input" type="checkbox" id="termsAndConditions" required>
               <label class="form-check-label" for="termsAndConditions">
                 By registering you agree to our <a href="#">Terms and Conditions</a>.
               </label>
-            </div>
+            </div> -->
 
             <!-- Sign Up Button -->
             <div class="d-flex justify-content-center mt-4">

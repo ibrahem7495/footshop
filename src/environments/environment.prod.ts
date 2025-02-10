@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  APIURL:'http://localhost:3000'
+  APIURL:'https://api.escuelajs.co/api/v1'
 
 };

@@ -1,8 +1,9 @@
 export interface UserAccountData {
   id :number;
-  fullName : string;
+  name : string;
   email : string;
   password :string;
-  exclusiveDeals : boolean;
-  termsAndConditions:boolean;
+  avatar : string;
+  // exclusiveDeals : boolean;
+  // termsAndConditions:boolean;
 }
