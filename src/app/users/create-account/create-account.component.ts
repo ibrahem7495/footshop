@@ -52,8 +52,15 @@ get confirmPassword(){
 addUser(){
 this.authService.register(this.createAccount.value).subscribe(user=>{this.addedSuccessAlert = true; })
 }
+// editProfile(){
+
+//    this.apiService.getUserByToken().subscribe(user=>{
+//     this.createAccount.patchValue(user)
+//    })
+
+// }
 ngOnDestroy(): void {
-  //reset addedSuccessAlert value 
+  //reset addedSuccessAlert value
   this.addedSuccessAlert = false;
 }
 }

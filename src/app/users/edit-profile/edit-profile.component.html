@@ -1,19 +1,29 @@
-<div *ngIf="addedSuccessAlert" class="alert alert-success d-flex align-items-center" role="alert">
+<!-- alerts start -->
+ <!-- -1- edit Success Alert -->
+<div *ngIf="editSuccessAlert" class="alert alert-success d-flex align-items-center" role="alert">
   <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
   <div>
-user added succesesfuly   </div>
+user updated succesesfuly   </div>
 </div>
+<!-- -2- deleted succesesfuly alert -->
+<div *ngIf="deletedSuccessAlert" class="alert alert-success d-flex align-items-center" role="alert">
+  <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+  <div>
+user Deleted succesesfuly   </div>
+</div>
+<!-- alerts end -->
+
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
   <div class="row w-100">
     <div class="col-12 col-md-8 col-lg-6">
       <!-- Account Creation Card -->
       <div class="card shadow-sm">
         <div class="card-body">
-          <h3 class="text-center mb-4">Create an Account</h3>
+          <h3 class="text-center mb-4">Edit Account</h3>
 
           <!-- Sign Up with Email -->
-          <h5 class="mb-3">SIGN UP WITH EMAIL ADDRESS</h5>
-          <form [formGroup]= "createAccount" (ngSubmit)= "addUser()">
+          <h5 class="mb-3">Edit  Your Account {{fullName?.value}} </h5>
+          <form [formGroup]= "editAccount" (ngSubmit)= "editProfile()">
             <!-- Full Name -->
             <div class="mb-3">
               <label for="fullName" class="form-label">Full Name</label>
@@ -65,7 +75,7 @@ user added succesesfuly   </div>
                 </div>
               </div>
               <div>
-              <label for="confirmPassword" class="form-label">confirm Password</label>
+              <!-- <label for="confirmPassword" class="form-label">confirm Password</label>
                 <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
                 <div *ngIf= "confirmPassword?.invalid && confirmPassword?.touched" class="alert alert-danger p-1">
                   <div *ngIf= "confirmPassword?.errors?.['required']" >
@@ -75,7 +85,7 @@ user added succesesfuly   </div>
                     password not match
                   </div>
 
-                </div>
+                </div> -->
               </div>
 
             <!-- Exclusive Deals Checkbox -->
@@ -96,11 +106,15 @@ user added succesesfuly   </div>
 
             <!-- Sign Up Button -->
             <div class="d-flex justify-content-center mt-4">
-              <button  type="submit" [disabled]="createAccount.invalid" class="btn btn-primary w-100">Create an Account</button>
-              <!-- [disabled]="createAccount.invalid" -->
+              <button  type="submit" [disabled]="editAccount.invalid" class="btn btn-primary w-100">Edit Account</button>
+              <!-- [disabled]="editAccount.invalid" -->
             </div>
           </form>
-
+          <!-- <a routerLinkActive="active" class="btn btn-primary" (click)="editProfile()">edit profile  </a> -->
+          <div class="d-flex justify-content-center mt-4">
+            <button  type="button"  class="btn btn-danger w-100" (click)="deleteUser()">Delet Account</button>
+            <!-- [disabled]="editAccount.invalid" -->
+          </div>
         </div>
       </div>
     </div>
@@ -109,7 +123,7 @@ user added succesesfuly   </div>
 </div>
 <div>
   <h1>REMVED</h1>
-  {{createAccount.value | json}}
+  {{editAccount.value | json}}
   {{confirmPassword?.errors| json}}
 
 </div>

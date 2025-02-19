@@ -14,6 +14,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './users/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthInterceptor } from './users/auth/interseptor/auth.interceptor';
+import { ShopComponent } from './component/shop/shop.component';
+import { EditProfileComponent } from './users/edit-profile/edit-profile.component';
 
 
 
@@ -27,6 +29,9 @@ import { AuthInterceptor } from './users/auth/interseptor/auth.interceptor';
     CreateAccountComponent,
     IncorectPathComponent,
     LoginComponent,
+    ShopComponent,
+    EditProfileComponent,
+    
   ],
   imports: [
     BrowserModule,

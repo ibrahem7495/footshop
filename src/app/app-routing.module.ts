@@ -5,6 +5,7 @@ import { LoginComponent } from './users/login/login.component';
 import { CreateAccountComponent } from './users/create-account/create-account.component';
 import { HomeComponent } from './component/home/home.component';
 import { IncorectPathComponent } from './component/incorect-path/incorect-path.component';
+import { EditProfileComponent } from './users/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route
@@ -16,6 +17,8 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'CreateAccount', component: CreateAccountComponent },
+  { path: 'EditProfile', component: EditProfileComponent },
+
   { path: '**', component: IncorectPathComponent },
 ];
 

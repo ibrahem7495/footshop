@@ -1,8 +1,10 @@
+import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from './../auth/authService/auth.service';
 import { UserAccountData } from '../create-account/user-account-data';
 import { ApiService } from '../../../server/api.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { CreateAccountComponent } from '../create-account/create-account.component';
 
 @Component({
   selector: 'app-login',
@@ -10,19 +12,21 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+
   inputUserData?: UserAccountData;
   sginIn = new FormGroup({
     inputEmail: new FormControl(''),
     inputPassword: new FormControl(''),
   });
   loginFlag : boolean;
-  // userName:string;
+  userData:any;
   constructor(
     private apiService: ApiService,
     private authService: AuthService,
+    private cookieService:CookieService,
   ) {
     this.loginFlag = this.authService.isAuthenticated();
-    // this.userName='';
+
   }
 
   ngOnInit(): void {}
@@ -32,6 +36,7 @@ export class LoginComponent implements OnInit {
   get inputPassword() {
     return this.sginIn.get('inputPassword');
   }
+
   //   getAcoount(){
   //    const observer ={
   // next : (sgin :any)=>{
@@ -58,6 +63,7 @@ export class LoginComponent implements OnInit {
   userLogin(email: string, password: string) {
     this.authService.login(email, password).subscribe({
       next: () =>{
+
         // update  loginFlag  value
         this.loginFlag=this.authService.isAuthenticated();
       console.log('login successful')},
@@ -71,5 +77,7 @@ export class LoginComponent implements OnInit {
     this.loginFlag=this.authService.isAuthenticated();
 
   }
+
+
 }
 

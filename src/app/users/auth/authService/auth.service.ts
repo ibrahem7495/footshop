@@ -34,6 +34,9 @@ export class AuthService {
               secure: true,
               sameSite: 'Strict',
             });
+              // ✅ Store user data in a cookie
+          this.cookieService.set('user', JSON.stringify(response.user), { path: '/', secure: true, sameSite: 'Strict' });
+
               // Update the user state
 
 //               Why use this.userSubject.next(response.user);?
@@ -61,6 +64,8 @@ export class AuthService {
 //     'token' → Name of the cookie to delete.
 // '/' → Path of the cookie. Ensures that all paths in the application can no longer access this cookie.
     this.cookieService.delete('token','/');
+//delet user data
+this.cookieService.delete('user','/');
 
     // Clears the current user data by setting it to null.
     // Ensures that all components subscribing to user$ (Observable) immediately reflect that the user is logged out.
