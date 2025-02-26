@@ -1,7 +1,4 @@
-import { AbstractControl } from "@angular/forms";
-import { ApiService } from "src/server/api.service";
+import { AbstractControl } from '@angular/forms';
+import { ApiService } from 'src/services/api.service';
 
-export function duplicationPrevent(control :AbstractControl) {
-
-
-}
+export function duplicationPrevent(control: AbstractControl) {}

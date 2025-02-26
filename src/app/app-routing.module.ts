@@ -6,6 +6,8 @@ import { CreateAccountComponent } from './users/create-account/create-account.co
 import { HomeComponent } from './component/home/home.component';
 import { IncorectPathComponent } from './component/incorect-path/incorect-path.component';
 import { EditProfileComponent } from './users/edit-profile/edit-profile.component';
+import { ShopComponent } from './component/shop/shop.component';
+import { EditProductComponent } from './component/edit-product/edit-product.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route
@@ -13,11 +15,15 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    children: [{ path: 'home', component: HomeComponent }],
+    children: [
+      { path: 'home', component: HomeComponent },
+      {path:'shop',component:ShopComponent}
+    ],
   },
   { path: 'login', component: LoginComponent },
   { path: 'CreateAccount', component: CreateAccountComponent },
   { path: 'EditProfile', component: EditProfileComponent },
+  { path: 'EditProduct', component: EditProductComponent },
 
   { path: '**', component: IncorectPathComponent },
 ];

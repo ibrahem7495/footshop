@@ -1,1 +1,67 @@
-<p>shop works!</p>
+<!-- category seleiction -->
+<select class="form-select" aria-label="Default select example" (click)="categorySelection()" [(ngModel)]= "catigoryId">
+  <option  value="0" selected>select category (All)</option>
+  <option *ngFor= "let cat of Categories" [value]="cat.id">{{cat.name}}</option>
+</select>
+<!-- product card srart -->
+<div class="row">
+  <!-- <div class="card-group"> -->
+  <div *ngFor= "let cardProduct of products" class="col col-md-3">
+    <div class="card " style="width: auto; max-height: 35rem; text-wrap: nowrap;">
+       <!-- image slider start -->
+      <ngb-carousel *ngIf="cardProduct.images.length >0 " >
+        <ng-template ngbSlide *ngFor="let img of cardProduct.images">
+          <img [src]="img" class="d-block w-100" alt="Slide image">
+        </ng-template>
+      </ngb-carousel>
+             <!-- image slider end -->
+
+      <div class="card-body">
+        <h5 class="card-title text-wrap">{{cardProduct.title}}</h5>
+        <!-- <p class="card-text  overflow-auto"  >{{cardProduct.description}}</p> -->
+        <h5 class="card-title">{{cardProduct.price}} $</h5>
+
+        <!-- DETALIS  offcanvas button  -->
+        <button class="btn btn-lg btn-outline-primary mb-2 me-2" (click)="openEnd(content)" (click)="proDetalis(cardProduct.id)">DETALIS</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- </div> -->
+<!-- product card end -->
+
+
+<!-- offcanvas body -->
+  <ng-template #content let-offcanvas>
+    <div class="offcanvas-header">
+      <h4 class="offcanvas-title">{{proDetails?.title}}</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+    </div>
+    <div class="offcanvas-body">
+             <!-- image slider start -->
+             <ngb-carousel *ngIf="proDetails?.images?.length " >
+              <ng-template ngbSlide *ngFor="let img of proDetails?.images">
+                <img [src]="img" class="d-block w-100" alt="Slide image">
+              </ng-template>
+            </ngb-carousel>
+                   <!-- image slider end -->
+      <p>{{proDetails?.description}} </p>
+      <p>category : {{proDetails?.category?.name}} </p>
+      <p class="fs-2">{{proDetails?.price}} $</p>
+      <div class="text-end">
+        <button type="button" class="btn btn-outline-secondary" (click)="offcanvas.close('Close click')">Close</button>
+      </div>
+    </div>
+  </ng-template>
+<hr>
+
+
+
+
+
+
+
+
+
+
+

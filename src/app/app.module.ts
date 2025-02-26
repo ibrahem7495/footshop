@@ -16,8 +16,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthInterceptor } from './users/auth/interseptor/auth.interceptor';
 import { ShopComponent } from './component/shop/shop.component';
 import { EditProfileComponent } from './users/edit-profile/edit-profile.component';
-
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { EditProductComponent } from './component/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -31,13 +32,16 @@ import { EditProfileComponent } from './users/edit-profile/edit-profile.componen
     LoginComponent,
     ShopComponent,
     EditProfileComponent,
-    
+    EditProductComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbModule,
+    FormsModule,
   ],
   providers: [
     CookieService,

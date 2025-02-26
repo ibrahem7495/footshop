@@ -1,15 +1,24 @@
 <!-- alerts start -->
  <!-- -1- edit Success Alert -->
-<div *ngIf="editSuccessAlert" class="alert alert-success d-flex align-items-center" role="alert">
-  <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+<!-- <div *ngIf="editSuccessAlert" class="alert alert-success d-flex align-items-center" role="alert"> -->
+  <div *ngIf="editSuccessAlert" class="container mt-3">
+
+  <!-- <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
   <div>
-user updated succesesfuly   </div>
+user updated succesesfuly   </div> -->
+
+<ngb-alert type="success">
+  ✅ تم الحفظ بنجاح!
+</ngb-alert>
 </div>
 <!-- -2- deleted succesesfuly alert -->
 <div *ngIf="deletedSuccessAlert" class="alert alert-success d-flex align-items-center" role="alert">
-  <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+  <!-- <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
   <div>
-user Deleted succesesfuly   </div>
+user Deleted succesesfuly   </div> -->
+<ngb-alert type="success">
+  user Deleted succesesfuly
+</ngb-alert>
 </div>
 <!-- alerts end -->
 

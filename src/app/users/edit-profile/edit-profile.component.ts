@@ -1,68 +1,78 @@
+import { Router, Routes } from '@angular/router';
 import { AuthService } from './../auth/authService/auth.service';
-import { ApiService } from './../../../server/api.service';
-import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { ApiService } from '../../../services/api.service';
+import {
+  Component,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { validateFullName } from '../validators/fullNameValidator';
 import { confirmPassword } from '../validators/confirmPasswordValidator';
 import { switchMap } from 'rxjs';
 
-
-
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.css']
+  styleUrls: ['./edit-profile.component.css'],
 })
-export class EditProfileComponent implements OnInit , OnDestroy {
+export class EditProfileComponent implements OnInit, OnDestroy {
   editAccount = new FormGroup({
-    name : new FormControl('',[Validators.required,Validators.minLength(5),validateFullName]),
-    email : new FormControl('',[Validators.required,Validators.email]),
-    avatar : new FormControl('',[Validators.required]),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+      validateFullName,
+    ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    avatar: new FormControl('', [Validators.required]),
 
-    password : new FormControl('',[Validators.required,Validators.minLength(7)]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(7),
+    ]),
+  });
+  editSuccessAlert: boolean;
+  deletedSuccessAlert: boolean;
 
-
-
-
-
-  })
-  editSuccessAlert:boolean;
-  deletedSuccessAlert:boolean;
-
-  constructor(private apiService: ApiService , private authService:AuthService) {
-    this.editSuccessAlert = false
-    this.deletedSuccessAlert = false
-   }
-
-  ngOnInit(): void {
-    this.apiService.getUserByToken().subscribe(user=>{
-      this.editAccount.patchValue(user)
-     })
-
+  constructor(
+    private apiService: ApiService,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.editSuccessAlert = false;
+    this.deletedSuccessAlert = false;
   }
 
-get fullName (){
-  return this.editAccount.get('name');
-}
+  ngOnInit(): void {
+    this.apiService.getUserByToken().subscribe((user) => {
+      this.editAccount.patchValue(user);
+    });
+  }
 
-get email (){
-  return this.editAccount.get('email');
-}
-get password (){
-  return this.editAccount.get('password');
-}
-get exclusiveDeals (){
-  return this.editAccount.get('exclusiveDeals');
-}
-get confirmPassword(){
-  return this.editAccount.get('confirmPassword');
-}
+  get fullName() {
+    return this.editAccount.get('name');
+  }
 
-editProfile(){
-  //  ******** first method  ***** */
-  // this.apiService.getUserByToken().subscribe(user=>{this.apiService.updateUservalue(user.id,this.editAccount.value).subscribe(
+  get email() {
+    return this.editAccount.get('email');
+  }
+  get password() {
+    return this.editAccount.get('password');
+  }
+  get exclusiveDeals() {
+    return this.editAccount.get('exclusiveDeals');
+  }
+  get confirmPassword() {
+    return this.editAccount.get('confirmPassword');
+  }
 
-  // )
+  editProfile() {
+    //  ******** first method  ***** */
+    // this.apiService.getUserByToken().subscribe(user=>{this.apiService.updateUservalue(user.id,this.editAccount.value).subscribe(
+
+    // )
     // You're using .subscribe() twice because you need to perform two sequential API calls:
 
     // First subscribe() → Fetch user data (getUserByToken())
@@ -73,36 +83,43 @@ editProfile(){
     // Once the user ID is retrieved, you can pass it into updateUser().
     // Each .subscribe() ensures the response is received before proceeding to the next step.
 
-//               **********    best practice  ************** */
-// using switchMap
-//     When Should You Use switchMap?
+    //               **********    best practice  ************** */
+    // using switchMap
+    //     When Should You Use switchMap?
 
-// Use switchMap when...	Use .subscribe() separately when...
-// You need one request to depend on another (like fetching a user before updating them).	You don’t need to chain API calls, just process a single observable.
-// You want to avoid nested subscriptions and keep the code clean.	Each API call is independent and doesn’t need another request’s data.
-// The latest request should cancel any previous ongoing request.	You need multiple simultaneous requests (like fetching user data and products at the same time).
-// 💡 Final Takeaway
-// switchMap is ideal when you need to chain multiple API calls while ensuring only the latest request is processed.
-// It prevents memory leaks, optimizes performance, and makes the code more readable.
-// If you don't need automatic cancelation and want all requests to go through, consider using mergeMap instead.
+    // Use switchMap when...	Use .subscribe() separately when...
+    // You need one request to depend on another (like fetching a user before updating them).	You don’t need to chain API calls, just process a single observable.
+    // You want to avoid nested subscriptions and keep the code clean.	Each API call is independent and doesn’t need another request’s data.
+    // The latest request should cancel any previous ongoing request.	You need multiple simultaneous requests (like fetching user data and products at the same time).
+    // 💡 Final Takeaway
+    // switchMap is ideal when you need to chain multiple API calls while ensuring only the latest request is processed.
+    // It prevents memory leaks, optimizes performance, and makes the code more readable.
+    // If you don't need automatic cancelation and want all requests to go through, consider using mergeMap instead.
     //*************** */
 
-      this.apiService.getUserByToken().pipe(
-        switchMap(user => {
+    this.apiService
+      .getUserByToken()
+      .pipe(
+        switchMap((user) => {
           console.log('User ID:', user.id);
-          return this.apiService.updateUservalue(user.id, this.editAccount.value);
+          return this.apiService.updateUservalue(
+            user.id,
+            this.editAccount.value
+          );
         })
-      ).subscribe({
+      )
+      .subscribe({
         next: () => {
           this.editSuccessAlert = true;
+          setTimeout(() => (this.editSuccessAlert = false), 3000); // إغلاق تلقائي بعد 3 ثواني
           console.log('User updated successfully!');
         },
         error: (err) => {
           console.error('Error:', err);
           // alert('Error updating account.');
-        }
+        },
       });
-          // Why is this better?
+    // Why is this better?
     // Problem in original code	Fix using switchMap
     // Nested .subscribe() makes it harder to read	Flat structure, more readable
     // Possible memory leaks from multiple subscriptions	Single subscription avoids leaks
@@ -112,8 +129,6 @@ editProfile(){
     // It makes the code more readable & efficient while still executing sequential API calls.
     // The second API call (updateUser()) only runs after the first one (getUserByToken()) completes.
     // Would you like to integrate global error handling for API calls as well? 🚀
-
-
 
     // ** switchMap ***
 
@@ -148,35 +163,43 @@ editProfile(){
     // ✅ Optimized Performance & Readability
 
     // Since switchMap handles cancelation automatically, it prevents memory leaks and keeps your code structured & readable.
-    }
-    deleteUser(){
-      this.apiService.getUserByToken().subscribe({
-        next:(user)=>{
-          this.apiService.deleteUserById(user.id).subscribe({
-            next:()=>{console.log('User deleted successfully!'),
-              this.deletedSuccessAlert = true;},
-            error:(err1)=>{
-              console.error('Error:', err1);}
-          })
+  }
+  deleteUser() {
+    this.apiService.getUserByToken().subscribe({
+      next: (user) => {
+        this.apiService.deleteUserById(user.id).subscribe({
+          next: () => {
+            console.log('User deleted successfully!'),
+              (this.deletedSuccessAlert = true);
 
+            setTimeout(() => (this.deletedSuccessAlert = false), 3000); // إغلاق تلقائي بعد 3 ثواني
+            setTimeout(() => this.router.navigate(['/login']), 3000); // انتقال تلقائي بعد 3 ثواني الى صفحة تسجيل الدخول
+          },
+          error: (err1) => {
+            console.error('Error:', err1);
+          },
+        });
+      },
+      error: (err2) => {
+        console.error('Error:', err2);
+      },
+    });
+  }
+  /***** ng alerts */
+  //  alertVisible = false;
 
-        },
-        error:(err2)=>{
-          console.error('Error:', err2);
+  //  showAlert() {
+  //    this.alertVisible = true;
+  //    setTimeout(() => this.alertVisible = false, 3000); // إغلاق تلقائي بعد 3 ثواني
+  //  }
 
+  //  closeAlert() {
+  //    this.alertVisible = false;
+  //  }
 
-        }
-      }
-
-      )
-    }
-
-
-ngOnDestroy(): void {
-  //reset addedSuccessAlert value
-  this.editSuccessAlert = false;
-  this.deletedSuccessAlert = false;
-
+  ngOnDestroy(): void {
+    //reset addedSuccessAlert value
+    this.editSuccessAlert = false;
+    this.deletedSuccessAlert = false;
+  }
 }
-}
-

@@ -1,10 +1,11 @@
+import { ApiService } from '../../../services/api.service';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from './../auth/authService/auth.service';
 import { UserAccountData } from '../create-account/user-account-data';
-import { ApiService } from '../../../server/api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CreateAccountComponent } from '../create-account/create-account.component';
+import { retry } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -12,24 +13,26 @@ import { CreateAccountComponent } from '../create-account/create-account.compone
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
   inputUserData?: UserAccountData;
   sginIn = new FormGroup({
     inputEmail: new FormControl(''),
     inputPassword: new FormControl(''),
   });
-  loginFlag : boolean;
-  userData:any;
+  loginFlag: boolean;
+  userData: any;
+  avatarUrl?: string;
+  name?: string;
   constructor(
     private apiService: ApiService,
     private authService: AuthService,
-    private cookieService:CookieService,
+    private cookieService: CookieService
   ) {
     this.loginFlag = this.authService.isAuthenticated();
-
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loginFlag = false;
+  }
   get inputEmail() {
     return this.sginIn.get('inputEmail');
   }
@@ -62,22 +65,37 @@ export class LoginComponent implements OnInit {
   //************************************************************************************************* */
   userLogin(email: string, password: string) {
     this.authService.login(email, password).subscribe({
-      next: () =>{
-
+      next: () => {
         // update  loginFlag  value
-        this.loginFlag=this.authService.isAuthenticated();
-      console.log('login successful')},
-      error: (err) => {console.log('Login failed:', err)}
+        this.loginFlag = this.authService.isAuthenticated();
+        console.log('login successful');
+        // get user data from api //عشان نملاء بيانات البطاقه التعريفيه
+        this.apiService
+          .getUserByToken()
+          .pipe(
+            retry(3) // إعادة المحاولة 3 مرات قبل تسجيل الخطأ
+          )
+          .subscribe({
+            next: (user) => {
+              this.avatarUrl = user.avatar;
+              this.name = user.name;
+            },
+            error: (err) => {
+              this.avatarUrl = 'https://fakeimg.pl/250x100/';
+              console.error(err);
+            },
+          });
+      },
+
+      error: (err) => {
+        console.log('Login failed:', err);
+      },
     });
   }
 
-  userLogout(){
+  userLogout() {
     this.authService.logout();
     // update  loginFlag  value
-    this.loginFlag=this.authService.isAuthenticated();
-
+    this.loginFlag = this.authService.isAuthenticated();
   }
-
-
 }
-
