@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { UserAccountData } from 'src/app/users/create-account/user-account-data';
 import { ProType } from 'src/app/model/pro-type';
 import { CatType } from 'src/app/model/cat-type';
+import { NewProduct } from 'src/app/model/new-product';
 
 @Injectable({
   providedIn: 'root',
@@ -62,7 +63,7 @@ export class ApiService {
   getAllProduts(limit:number,offset:number):Observable<ProType[]>{
     return this.httpClient.get<ProType[]>(`${environment.APIURL}/products?limit=${limit}&offset=${offset}`)
   }
-  getPrductById(id:number):Observable<ProType>{
+  getPrductById(id:number |undefined):Observable<ProType>{
     return this.httpClient.get<ProType>(`${environment.APIURL}/products/${id} `)
   }
   getProductByCatId(limit:number,offset:number,catId:number):Observable<ProType[]>{
@@ -70,6 +71,16 @@ export class ApiService {
   }
   getAllCategory():Observable<CatType[]>{
 return this.httpClient.get<CatType[]>(`${environment.APIURL}/categories?limit=10`)
+  }
+  postNewProduct(newProd:NewProduct){
+return this.httpClient.post<NewProduct>(`${environment.APIURL}/products`,newProd,this.httpOptions)
+  }
+  editProductById(editProd:NewProduct , id :number){
+    return this.httpClient.put<NewProduct>(`${environment.APIURL}/products`,editProd,this.httpOptions)
+      }
+  deletProductById(id:number |undefined){
+    return this.httpClient.delete(`${environment.APIURL}/products/${id}`) || null;
+
   }
 
   }

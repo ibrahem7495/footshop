@@ -1,1 +1,33 @@
-<p>edit-product works!</p>
+<form class="m-3" [formGroup]="newProduct" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" id="title" class="form-control" formControlName="title" placeholder="Enter product title" />
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Price</label>
+    <input type="number" id="price" class="form-control" formControlName="price" placeholder="Enter product price" />
+  </div>
+
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea id="description" class="form-control" formControlName="description" placeholder="Enter product description"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="categoryId" class="form-label">Category</label>
+    <select id="categoryId" class="form-select" formControlName="categoryId">
+      <option value="" disabled selected>Select a category</option>
+      <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+    </select>
+  </div>
+<div formArrayName="images">
+  <div *ngFor="let image of images.controls ;let i=index" class="mb-3">
+    <label for="images" class="form-label">Product Image URL {{i+1}}</label>
+    <input type="text" id="images" class="form-control" [formControlName]="i" placeholder="Enter image URL" />
+  </div>
+  <button class="btn btn-primary " (click)="addImage()">+</button>
+</div>
+  <button type="submit" class="btn btn-primary mt-3" [disabled]="newProduct.invalid">Submit</button>
+
+</form>

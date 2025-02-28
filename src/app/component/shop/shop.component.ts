@@ -1,8 +1,10 @@
+import { EditService } from './../../../services/edit.service';
 import { ProType } from 'src/app/model/pro-type';
 import { ApiService } from '../../../services/api.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { CatType } from 'src/app/model/cat-type';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shop',
@@ -14,7 +16,7 @@ export class ShopComponent implements OnInit {
   proDetails?:ProType;
   Categories?:CatType[];
   catigoryId:number
-  constructor(private apiService: ApiService ,	private offcanvasService :NgbOffcanvas
+  constructor(private apiService: ApiService ,	private offcanvasService :NgbOffcanvas, private editService:EditService
 ) {
   this.catigoryId =0;
 }
@@ -42,7 +44,7 @@ export class ShopComponent implements OnInit {
   openEnd(content: TemplateRef<any>) {
 		this.offcanvasService.open(content, { position: 'end' });
 	}
-  proDetalis(proId:number){
+  openProDetalis(proId:number){
 this.apiService.getPrductById(proId).subscribe({
   next:(product)=>{
     this.proDetails=product
@@ -73,5 +75,13 @@ this.apiService.getProductByCatId(20,0,this.catigoryId).subscribe({
   }
 })
   }
-
+deletProduct(){
+  this.apiService.deletProductById(this.proDetails?.id).subscribe({
+    next :()=>{console.log('deleted successfuly')}
+    ,error:(err)=>{console.error(err)}
+  })
+}
+shareEditId(){
+  this.editService.updateData(this.proDetails?.id)
+}
 }

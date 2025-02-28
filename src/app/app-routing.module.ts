@@ -17,13 +17,13 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: 'home', component: HomeComponent },
+      { path: 'EditProduct', component: EditProductComponent },
       {path:'shop',component:ShopComponent}
     ],
   },
   { path: 'login', component: LoginComponent },
   { path: 'CreateAccount', component: CreateAccountComponent },
   { path: 'EditProfile', component: EditProfileComponent },
-  { path: 'EditProduct', component: EditProductComponent },
 
   { path: '**', component: IncorectPathComponent },
 ];

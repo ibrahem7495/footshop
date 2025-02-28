@@ -20,17 +20,15 @@
         <h5 class="card-title text-wrap">{{cardProduct.title}}</h5>
         <!-- <p class="card-text  overflow-auto"  >{{cardProduct.description}}</p> -->
         <h5 class="card-title">{{cardProduct.price}} $</h5>
-
         <!-- DETALIS  offcanvas button  -->
-        <button class="btn btn-lg btn-outline-primary mb-2 me-2" (click)="openEnd(content)" (click)="proDetalis(cardProduct.id)">DETALIS</button>
+        <button class="btn btn-lg btn-outline-primary mb-2 me-2" (click)="openEnd(content)" (click)="openProDetalis(cardProduct.id)">DETALIS</button>
       </div>
     </div>
   </div>
 </div>
   <!-- </div> -->
 <!-- product card end -->
-
-
+ 
 <!-- offcanvas body -->
   <ng-template #content let-offcanvas>
     <div class="offcanvas-header">
@@ -49,7 +47,10 @@
       <p>category : {{proDetails?.category?.name}} </p>
       <p class="fs-2">{{proDetails?.price}} $</p>
       <div class="text-end">
-        <button type="button" class="btn btn-outline-secondary" (click)="offcanvas.close('Close click')">Close</button>
+        <!-- <button type="button" class="btn btn-outline-secondary" (click)="offcanvas.close('Close click')">Close</button> -->
+        <button type="button" class="m-1 btn btn-outline-primary"routerLink="/EditProduct" (click)="shareEditId()">EDIT PRODUCT</button>
+        <button type="button" class="m-1 btn btn-outline-danger" (click)="deletProduct()">DELET THIS PRODUCT</button>
+
       </div>
     </div>
   </ng-template>
